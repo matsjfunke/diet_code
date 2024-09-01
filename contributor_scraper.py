@@ -1,12 +1,13 @@
+import json
 import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.firefox.service import Service
 
 # Set up options for Firefox
 options = Options()
-options.headless = False  # Set to True if you want to run in headless mode
+options.headless = True
 
 # Initialize the WebDriver
 driver = webdriver.Firefox(options=options)
@@ -17,13 +18,14 @@ driver.get(url)
 time.sleep(5)
 
 # Extract contributor data
+contributors_data = []
 try:
     contributors = driver.find_elements(By.CSS_SELECTOR, "li.contrib-person")
 
     for contributor in contributors:
         # Extract rank
         rank_element = contributor.find_element(By.CSS_SELECTOR, "span.f5.text-normal.color-fg-muted.float-right")
-        rank = rank_element.text if rank_element else "N/A"
+        rank = rank_element.text.replace("#", "").strip() if rank_element else "N/A"
 
         # Extract name
         name_element = contributor.find_element(By.CSS_SELECTOR, "a.text-normal")
@@ -31,14 +33,14 @@ try:
 
         # Extract deletions
         deletions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-danger.text-normal")
-        deletions = deletions_element.text if deletions_element else "N/A"
+        deletions = deletions_element.text.replace("--", "").strip() if deletions_element else "N/A"
 
-        # Print the extracted details
-        print(f"Rank: {rank}")
-        print(f"Name: {name}")
-        print(f"Deletions: {deletions}")
-        print("-" * 40)
+        # Append data to list
+        contributors_data.append({"rank": rank, "name": name, "deletions": deletions})
 
 finally:
-    # Close the WebDriver
     driver.quit()
+
+# Write data to JSON file
+with open("deletion-ranking.json", "w") as file:
+    json.dump(contributors_data, file, indent=4)
