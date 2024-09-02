@@ -4,8 +4,8 @@ import time
 from typing import Dict, List
 
 from selenium import webdriver
+from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
-from selenium.webdriver.firefox.options import Options
 
 
 def extract_gh_repo_id(gh_url: str) -> str:
@@ -22,13 +22,11 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
     param: str -> repo_owner/repo_name
     retuns json -> ranking of deletions
     """
-    # Set up options for Firefox
-    options = Options()
-    options.headless = True
+    options = ChromeOptions()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
 
-    # Initialize the WebDriver
-    driver = webdriver.Firefox(options=options)
-    url = f"https://github.com/{repo_id}/graphs/contributors?from=2023-08-27&to=2024-09-02&type=d"
+    url = f"https://github.com/{repo_id}/graphs/contributors"
     driver.get(url)
 
     # Wait for the page to load
@@ -39,6 +37,7 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
         contributors = driver.find_elements(By.CSS_SELECTOR, "li.contrib-person")
 
         for contributor in contributors:
+            # TODO calc ranking based on deletions instead of scrapeing
             rank_element = contributor.find_element(By.CSS_SELECTOR, "span.f5.text-normal.color-fg-muted.float-right")
             rank = rank_element.text.replace("#", "").strip() if rank_element else "N/A"
 
