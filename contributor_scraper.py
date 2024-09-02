@@ -56,3 +56,6 @@ if __name__ == "__main__":
     # Write data to JSON file
     with open("deletion-ranking.json", "w") as file:
         json.dump(deletion_ranking, file, indent=4)
+
+    import subprocess
+    subprocess.run(["cat", "deletion-ranking.json"])
