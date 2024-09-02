@@ -1,22 +1,77 @@
 [
     {
         "rank": "1",
-        "name": "Laurin-Notemann",
-        "deletions": "100,251"
+        "name": "jenuk",
+        "deletions": "8"
     },
     {
         "rank": "2",
-        "name": "paulocerez",
-        "deletions": "18,456"
+        "name": "apolinario",
+        "deletions": "8"
     },
     {
         "rank": "3",
-        "name": "lnart",
-        "deletions": "10,560"
+        "name": "paulcjh",
+        "deletions": "7"
     },
     {
         "rank": "4",
-        "name": "Joelheile",
-        "deletions": "9,582"
+        "name": "timudk",
+        "deletions": "5"
+    },
+    {
+        "rank": "5",
+        "name": "chamini2",
+        "deletions": "4"
+    },
+    {
+        "rank": "6",
+        "name": "vuklazovic",
+        "deletions": "3"
+    },
+    {
+        "rank": "7",
+        "name": "jakedahn",
+        "deletions": "3"
+    },
+    {
+        "rank": "8",
+        "name": "omahs",
+        "deletions": "2"
+    },
+    {
+        "rank": "9",
+        "name": "deforum",
+        "deletions": "2"
+    },
+    {
+        "rank": "10",
+        "name": "TJKDev1",
+        "deletions": "1"
+    },
+    {
+        "rank": "11",
+        "name": "anvilarth",
+        "deletions": "1"
+    },
+    {
+        "rank": "12",
+        "name": "emadbagheri96",
+        "deletions": "1"
+    },
+    {
+        "rank": "13",
+        "name": "ArtificialZeng",
+        "deletions": "1"
+    },
+    {
+        "rank": "14",
+        "name": "cbrownstein-lambda",
+        "deletions": "1"
+    },
+    {
+        "rank": "15",
+        "name": "eltociear",
+        "deletions": "1"
     }
 ]

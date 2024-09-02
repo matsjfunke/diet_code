@@ -1,4 +1,5 @@
 import json
+import re
 import time
 from typing import Dict, List
 
@@ -7,7 +8,16 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.firefox.options import Options
 
 
-def scrape_repo_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
+def extract_gh_repo_id(gh_url: str) -> str:
+    pattern = r"https://github\.com/([^/]+)/([^/]+)"
+    match = re.search(pattern, gh_url)
+
+    if match:
+        return f"{match.group(1)}/{match.group(2)}"
+    raise ValueError("Invalid GitHub URL format")
+
+
+def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
     """
     param: str -> repo_owner/repo_name
     retuns json -> ranking of deletions
@@ -51,11 +61,17 @@ def scrape_repo_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
 
 
 if __name__ == "__main__":
-    deletion_ranking = scrape_repo_deletion_ranking(repo_id="rememberry-io/rememberry")
+    gh_url = "https://github.com/black-forest-labs/flux"
+    gh_url = "https://github.com/black-forest-labs/flux/blob/main/src/flux/cli.py"
+
+    repo_id = extract_gh_repo_id(gh_url)
+
+    deletion_ranking = scrape_gh_deletion_ranking(repo_id=repo_id)
 
     # Write data to JSON file
     with open("deletion-ranking.json", "w") as file:
         json.dump(deletion_ranking, file, indent=4)
 
     import subprocess
+
     subprocess.run(["cat", "deletion-ranking.json"])
