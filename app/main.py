@@ -1,16 +1,8 @@
-from contributor_scraper import ScraperException, extract_gh_repo_id, scrape_gh_deletion_ranking
 from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+
+from .contributor_scraper import ScraperException, extract_gh_repo_id, scrape_gh_deletion_ranking
 
 app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 
 @app.get("/deletion-ranking")
