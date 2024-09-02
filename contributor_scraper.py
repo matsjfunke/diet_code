@@ -4,8 +4,15 @@ import time
 from typing import Dict, List
 
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException, WebDriverException
 from selenium.webdriver import ChromeOptions
 from selenium.webdriver.common.by import By
+
+
+class ScraperException(Exception):
+    """Custom exception for scraper errors."""
+
+    pass
 
 
 def extract_gh_repo_id(gh_url: str) -> str:
@@ -24,7 +31,11 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
     """
     options = ChromeOptions()
     options.add_argument("--headless=new")
-    driver = webdriver.Chrome(options=options)
+
+    try:
+        driver = webdriver.Chrome(options=options)
+    except WebDriverException as e:
+        raise ScraperException(f"Failed to initialize the web driver: {str(e)}")
 
     url = f"https://github.com/{repo_id}/graphs/contributors"
     driver.get(url)
@@ -35,29 +46,33 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
     deletion_ranking = []
     try:
         contributors = driver.find_elements(By.CSS_SELECTOR, "li.contrib-person")
+        if not contributors:
+            raise ScraperException(f"No contributors found for repository: {repo_id}")
 
         for contributor in contributors:
-            # TODO calc ranking based on deletions instead of scrapeing
-            rank_element = contributor.find_element(By.CSS_SELECTOR, "span.f5.text-normal.color-fg-muted.float-right")
-            rank = rank_element.text.replace("#", "").strip() if rank_element else "N/A"
+            try:
+                rank_element = contributor.find_element(By.CSS_SELECTOR, "span.f5.text-normal.color-fg-muted.float-right")
+                rank = rank_element.text.replace("#", "").strip() if rank_element else "N/A"
 
-            name_element = contributor.find_element(By.CSS_SELECTOR, "a.text-normal")
-            name = name_element.text if name_element else "N/A"
+                name_element = contributor.find_element(By.CSS_SELECTOR, "a.text-normal")
+                name = name_element.text if name_element else "N/A"
 
-            deletions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-danger.text-normal")
-            deletions = deletions_element.text.replace("--", "").strip() if deletions_element else "N/A"
+                deletions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-danger.text-normal")
+                deletions = deletions_element.text.replace("--", "").strip() if deletions_element else "N/A"
 
-            additions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-success.text-normal")
-            additions = additions_element.text.replace("++", "").strip() if deletions_element else "N/A"
+                additions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-success.text-normal")
+                additions = additions_element.text.replace("++", "").strip() if deletions_element else "N/A"
 
-            deletion_ranking.append({"rank": rank, "name": name, "deletions": deletions, "additions": additions})
+                deletion_ranking.append({"rank": rank, "name": name, "deletions": deletions, "additions": additions})
+            except NoSuchElementException as e:
+                raise ScraperException(f"Failed to scrape contributor data: {str(e)}")
     finally:
         driver.quit()
+
     return deletion_ranking
 
 
 if __name__ == "__main__":
-    gh_url = "https://github.com/black-forest-labs/flux"
     gh_url = "https://github.com/black-forest-labs/flux/blob/main/src/flux/cli.py"
 
     repo_id = extract_gh_repo_id(gh_url)
