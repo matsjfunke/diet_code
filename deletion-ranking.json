@@ -2,76 +2,91 @@
     {
         "rank": "1",
         "name": "jenuk",
-        "deletions": "8"
+        "deletions": "8",
+        "additions": "15"
     },
     {
         "rank": "2",
         "name": "apolinario",
-        "deletions": "8"
+        "deletions": "8",
+        "additions": "41"
     },
     {
         "rank": "3",
         "name": "paulcjh",
-        "deletions": "7"
+        "deletions": "7",
+        "additions": "24"
     },
     {
         "rank": "4",
         "name": "timudk",
-        "deletions": "5"
+        "deletions": "5",
+        "additions": "2,436"
     },
     {
         "rank": "5",
         "name": "chamini2",
-        "deletions": "4"
+        "deletions": "4",
+        "additions": "4"
     },
     {
         "rank": "6",
         "name": "vuklazovic",
-        "deletions": "3"
+        "deletions": "3",
+        "additions": "3"
     },
     {
         "rank": "7",
         "name": "jakedahn",
-        "deletions": "3"
+        "deletions": "3",
+        "additions": "3"
     },
     {
         "rank": "8",
         "name": "omahs",
-        "deletions": "2"
+        "deletions": "2",
+        "additions": "2"
     },
     {
         "rank": "9",
         "name": "deforum",
-        "deletions": "2"
+        "deletions": "2",
+        "additions": "1"
     },
     {
         "rank": "10",
         "name": "TJKDev1",
-        "deletions": "1"
+        "deletions": "1",
+        "additions": "1"
     },
     {
         "rank": "11",
         "name": "anvilarth",
-        "deletions": "1"
+        "deletions": "1",
+        "additions": "1"
     },
     {
         "rank": "12",
         "name": "emadbagheri96",
-        "deletions": "1"
+        "deletions": "1",
+        "additions": "1"
     },
     {
         "rank": "13",
         "name": "ArtificialZeng",
-        "deletions": "1"
+        "deletions": "1",
+        "additions": "1"
     },
     {
         "rank": "14",
         "name": "cbrownstein-lambda",
-        "deletions": "1"
+        "deletions": "1",
+        "additions": "1"
     },
     {
         "rank": "15",
         "name": "eltociear",
-        "deletions": "1"
+        "deletions": "1",
+        "additions": "1"
     }
 ]

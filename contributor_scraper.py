@@ -39,24 +39,21 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
         contributors = driver.find_elements(By.CSS_SELECTOR, "li.contrib-person")
 
         for contributor in contributors:
-            # Extract rank
             rank_element = contributor.find_element(By.CSS_SELECTOR, "span.f5.text-normal.color-fg-muted.float-right")
             rank = rank_element.text.replace("#", "").strip() if rank_element else "N/A"
 
-            # Extract name
             name_element = contributor.find_element(By.CSS_SELECTOR, "a.text-normal")
             name = name_element.text if name_element else "N/A"
 
-            # Extract deletions
             deletions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-danger.text-normal")
             deletions = deletions_element.text.replace("--", "").strip() if deletions_element else "N/A"
 
-            # Append data to list
-            deletion_ranking.append({"rank": rank, "name": name, "deletions": deletions})
+            additions_element = contributor.find_element(By.CSS_SELECTOR, "span.color-fg-success.text-normal")
+            additions = additions_element.text.replace("++", "").strip() if deletions_element else "N/A"
 
+            deletion_ranking.append({"rank": rank, "name": name, "deletions": deletions, "additions": additions})
     finally:
         driver.quit()
-
     return deletion_ranking
 
 
