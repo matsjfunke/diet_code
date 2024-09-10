@@ -1,21 +1,19 @@
 from fastapi import FastAPI, HTTPException
 
-from .contributor_scraper import ScraperException, extract_gh_repo_id, scrape_gh_deletion_ranking
+from .github_scraper import extract_gh_owner_repo, scrape_gh_contribution_data
 
 app = FastAPI()
 
 
 @app.get("/deletion-ranking")
-async def return_ranking(gh_url: str):
+async def return_ranking(url: str):
     try:
-        repo_id = extract_gh_repo_id(gh_url)
+        owner, repo = extract_gh_owner_repo(url)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
     try:
-        deletion_ranking = scrape_gh_deletion_ranking(repo_id=repo_id)
-    except ScraperException as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        deletion_ranking = scrape_gh_contribution_data(owner=owner, repo=repo)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 

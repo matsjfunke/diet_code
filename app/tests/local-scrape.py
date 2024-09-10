@@ -6,7 +6,6 @@ from typing import Dict, List
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException, WebDriverException
 from selenium.webdriver import ChromeOptions
-from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
 
 
@@ -32,11 +31,9 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
     """
     options = ChromeOptions()
     options.add_argument("--headless=new")
-    options.add_argument("--no-sandbox")
-    options.add_argument("--disable-dev-shm-usage")
 
     try:
-        driver = webdriver.Chrome(service=ChromeService("/usr/local/bin/chromedriver"), options=options)
+        driver = webdriver.Chrome(options=options)
     except WebDriverException as e:
         raise ScraperException(f"Failed to initialize the web driver: {str(e)}")
 
@@ -44,7 +41,7 @@ def scrape_gh_deletion_ranking(repo_id: str) -> List[Dict[str, str]]:
     driver.get(url)
 
     # Wait for the page to load
-    time.sleep(10)
+    time.sleep(5)
 
     deletion_ranking = []
     try:
