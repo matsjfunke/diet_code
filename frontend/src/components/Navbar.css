@@ -1,0 +1,51 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid black;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-image {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    /* Add some space between logo and "Diet Code" */
+}
+
+.diet-code-link {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-right: auto;
+    /* Push the remaining content to the right */
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links a {
+    color: black;
+    text-decoration: none;
+    margin-left: 20px;
+    margin-right: 40px;
+}
+
+/* Adjust the last link to have right margin */
+.nav-links a:last-child {
+    margin-right: 60px;
+}
