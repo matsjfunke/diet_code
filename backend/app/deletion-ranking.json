@@ -1,92 +1,146 @@
 [
-    {
-        "rank": "1",
-        "name": "jenuk",
-        "deletions": "8",
-        "additions": "15"
-    },
-    {
-        "rank": "2",
-        "name": "apolinario",
-        "deletions": "8",
-        "additions": "41"
-    },
-    {
-        "rank": "3",
-        "name": "paulcjh",
-        "deletions": "7",
-        "additions": "24"
-    },
-    {
-        "rank": "4",
-        "name": "timudk",
-        "deletions": "5",
-        "additions": "2,436"
-    },
-    {
-        "rank": "5",
-        "name": "chamini2",
-        "deletions": "4",
-        "additions": "4"
-    },
-    {
-        "rank": "6",
-        "name": "vuklazovic",
-        "deletions": "3",
-        "additions": "3"
-    },
-    {
-        "rank": "7",
-        "name": "jakedahn",
-        "deletions": "3",
-        "additions": "3"
-    },
-    {
-        "rank": "8",
-        "name": "omahs",
-        "deletions": "2",
-        "additions": "2"
-    },
-    {
-        "rank": "9",
-        "name": "deforum",
-        "deletions": "2",
-        "additions": "1"
-    },
-    {
-        "rank": "10",
-        "name": "TJKDev1",
-        "deletions": "1",
-        "additions": "1"
-    },
-    {
-        "rank": "11",
-        "name": "anvilarth",
-        "deletions": "1",
-        "additions": "1"
-    },
-    {
-        "rank": "12",
-        "name": "emadbagheri96",
-        "deletions": "1",
-        "additions": "1"
-    },
-    {
-        "rank": "13",
-        "name": "ArtificialZeng",
-        "deletions": "1",
-        "additions": "1"
-    },
-    {
-        "rank": "14",
-        "name": "cbrownstein-lambda",
-        "deletions": "1",
-        "additions": "1"
-    },
-    {
-        "rank": "15",
-        "name": "eltociear",
-        "deletions": "1",
-        "additions": "1"
+  {
+    "contributor": {
+      "username": "apolinario",
+      "profile_pic": "https://avatars.githubusercontent.com/u/788417?v=4",
+      "deletions": 8,
+      "additions": 41,
+      "commits": 5
     }
+  },
+  {
+    "contributor": {
+      "username": "jenuk",
+      "profile_pic": "https://avatars.githubusercontent.com/u/22528125?v=4",
+      "deletions": 8,
+      "additions": 15,
+      "commits": 3
+    }
+  },
+  {
+    "contributor": {
+      "username": "paulcjh",
+      "profile_pic": "https://avatars.githubusercontent.com/u/47833405?v=4",
+      "deletions": 7,
+      "additions": 24,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "timudk",
+      "profile_pic": "https://avatars.githubusercontent.com/u/37085732?v=4",
+      "deletions": 5,
+      "additions": 2436,
+      "commits": 3
+    }
+  },
+  {
+    "contributor": {
+      "username": "chamini2",
+      "profile_pic": "https://avatars.githubusercontent.com/u/2745502?v=4",
+      "deletions": 4,
+      "additions": 4,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "vuklazovic",
+      "profile_pic": "https://avatars.githubusercontent.com/u/68462413?v=4",
+      "deletions": 3,
+      "additions": 3,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "jakedahn",
+      "profile_pic": "https://avatars.githubusercontent.com/u/8596?v=4",
+      "deletions": 3,
+      "additions": 3,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "omahs",
+      "profile_pic": "https://avatars.githubusercontent.com/u/73983677?v=4",
+      "deletions": 2,
+      "additions": 2,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "deforum",
+      "profile_pic": "https://avatars.githubusercontent.com/u/110359942?v=4",
+      "deletions": 2,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "TJKDev1",
+      "profile_pic": "https://avatars.githubusercontent.com/u/58661780?v=4",
+      "deletions": 1,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "anvilarth",
+      "profile_pic": "https://avatars.githubusercontent.com/u/43551010?v=4",
+      "deletions": 1,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "emadbagheri96",
+      "profile_pic": "https://avatars.githubusercontent.com/u/21096918?v=4",
+      "deletions": 1,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "ArtificialZeng",
+      "profile_pic": "https://avatars.githubusercontent.com/u/39647839?v=4",
+      "deletions": 1,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "cbrownstein-lambda",
+      "profile_pic": "https://avatars.githubusercontent.com/u/105375373?v=4",
+      "deletions": 1,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "eltociear",
+      "profile_pic": "https://avatars.githubusercontent.com/u/22633385?v=4",
+      "deletions": 1,
+      "additions": 1,
+      "commits": 1
+    }
+  },
+  {
+    "contributor": {
+      "username": "zeke",
+      "profile_pic": "https://avatars.githubusercontent.com/u/2289?v=4",
+      "deletions": 0,
+      "additions": 1,
+      "commits": 1
+    }
+  }
 ]

@@ -53,12 +53,10 @@ if __name__ == "__main__":
     print(owner1, repo1)  # Output: black-forest-labs flux
     print(owner, repo)  # Output: black-forest-labs flux
 
-    owner, repo = extract_gh_owner_repo("https://github.com/black-forest-labs/flux/graphs/contributors")
-    # owner, repo = extract_gh_owner_repo("https://github.com/langfuse/langfuse")
     contributor_data = scrape_gh_contribution_data(owner=owner, repo=repo)
 
-    first = contributor_data[0]
-    print(f"The contributor with the most deletions is {first['contributor']['username']} with {first['contributor']['deletions']} deletions.")
+    # first = contributor_data[0]
+    # print(f"The contributor with the most deletions is {first['contributor']['username']} with {first['contributor']['deletions']} deletions.")
 
     import subprocess
 

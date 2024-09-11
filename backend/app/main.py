@@ -1,6 +1,7 @@
 import logging
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from github_scraper import extract_gh_owner_repo, scrape_gh_contribution_data
 
 logging.basicConfig(level=logging.INFO)
@@ -8,8 +9,11 @@ logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
+origins = ["http://localhost:3000"]
+app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
-@app.get("/deletion-ranking")
+
+@app.get("/gh-deletion-ranking")
 async def return_ranking(url: str):
     try:
         owner, repo = extract_gh_owner_repo(url)
