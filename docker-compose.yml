@@ -1,12 +1,22 @@
 version: "3.8"
 
 services:
+  diet-code-frontend-container:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: diet-code-frontend-image
+    container_name: diet-code-frontend-container
+    ports:
+      - 3000:3000
+    command: ["npm", "start"]
+
   diet-code-backend-container:
     build:
       context: ./backend/app
       dockerfile: Dockerfile
-    command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
     image: diet-code-backend-image
     container_name: diet-code-backend-container
     ports:
       - 8000:8000
+    command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
