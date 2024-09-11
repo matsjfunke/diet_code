@@ -1,0 +1,13 @@
+body {
+  font-family: "Helvetica", sans-serif;
+  margin: 0;
+  padding: 0;
+
+  background: rgb(152, 0, 0);
+  background: linear-gradient(
+    270deg,
+    rgba(152, 0, 0, 1) 60%,
+    rgba(253, 29, 29, 1) 85%
+  );
+  color: white;
+}

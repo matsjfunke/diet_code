@@ -1,0 +1,56 @@
+[
+  {
+    "type": "text",
+    "content": "\"Deleted code has no bugs in it\"\n~ Steve Hazel"
+  },
+  {
+    "type": "link",
+    "content": "https://www.youtube.com/watch?v=y376JcBl1t8&t=9s",
+    "text": "I Love Deleting Code, and No One Can Stop Me by Steven Hazel"
+  },
+  {
+    "type": "text",
+    "content": "\"Deleted code never needs to be fixed on the weekend\"\n~ Steve Hazel"
+  },
+  {
+    "type": "text",
+    "content": "\"Code never lies, comments sometimes do.\" - Ron Jeffries"
+  },
+  {
+    "type": "code",
+    "text": "Don't Repeat Yourself, When you find similar functions, it's a wonderful opportunity to delete code.",
+    "language": "python",
+    "code": "# Before\n\ndef calculate_square_area(side):\n    return side * side\n\ndef calculate_rectangle_area(length, width):\n    return length * width\n\ndef calculate_circle_area(radius):\n    import math\n    return math.pi * radius * radius\n\n# After\n\ndef calculate_area(shape, *dimensions):\n    if shape == \"square\":\n        return dimensions[0] ** 2\n    elif shape == \"rectangle\":\n        return dimensions[0] * dimensions[1]\n    elif shape == \"circle\":\n        return math.pi * dimensions[0] ** 2\n    else:\n        raise ValueError(\"Unsupported shape\")"
+  },
+  {
+    "type": "text",
+    "content": "\"Deleted code is 100% clear to everybody, everybody knows how it works even six months later\"\n~ Steve Hazel"
+  },
+  {
+    "type": "code",
+    "text": "Over-declarative code isn't clean code \nless code -> less potential sources of bugs or confusion",
+    "language": "javascript",
+    "code": "// Before:\nfunction getAverage(id, days) {\n    let count = getCount(String(id));\n    count += baseCount;\n    let avg = count / days;\n    return avg;\n}\n\n// After:\nfunction getAverage(id, days) {\n    return getCount(id) / days;\n}"
+  },
+  {
+    "type": "text",
+    "content": "\"Not deleting obsolete code is like holding onto your Blockbuster membership card 'just in case' ... it's useless now, and even if it wasn't, Git's got your back.\""
+  },
+  {
+    "type": "text",
+    "content": "\"Deleted code runs in zero milliseconds it is absolutely the fastest you can get\"\n~ Steve Hazel"
+  },
+  {
+    "type": "link",
+    "content": "https://www.youtube.com/watch?v=wWAxzim0EkA&t=8s",
+    "text": "Deleting Obsolete Code by Michael Miles"
+  },
+  {
+    "type": "text",
+    "content": "\"Deleted code is debugged code.\" ~ Jeff Sickel"
+  },
+  {
+    "type": "text",
+    "content": "\"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live.\" ~ Martin Golding"
+  }
+]

@@ -1,0 +1,25 @@
+.footer {
+    background-color: black;
+    padding: 20px;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+}
+
+.footer-text {
+    margin: 20px;
+}
+
+.contact-button {
+    padding: 10px 20px;
+    background-color: #9e1b32;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.contact-button:hover {
+    transform: scale(1.1);
+}
