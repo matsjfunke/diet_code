@@ -73,7 +73,7 @@ function Why() {
 
   return (
     <div className="why-page">
-      <h1>Why Delete Code?</h1>
+      <h1 className="main-heading">Why Delete Code?</h1>
       <div className="points-container">
         {points.map((point, index) => (
           <div key={index} className="point-box">
