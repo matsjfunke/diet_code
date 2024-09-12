@@ -1,113 +1,117 @@
 .taste-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  padding-top: 80px;
-  /* Add top padding to account for the navbar */
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 83vh;
 }
 
 .taste-heading {
-  text-align: center;
-  margin-bottom: 30px;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .taste-form {
-  display: flex;
-  margin-bottom: 20px;
+    display: flex;
+    margin-bottom: 20px;
 }
 
 .taste-input {
-  flex-grow: 1;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px 0 0 4px;
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 50px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px 4px 4px 4px;
+    max-width: 500px;
 }
 
 .taste-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: white;
-  color: rgba(152, 0, 0, 1);
-  border: none;
-  cursor: pointer;
-  border-radius: 0 4px 4px 0;
-  transition:
-    background-color 0.3s,
-    color 0.3s,
-    transform 0.3s;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: white;
+    color: rgba(152, 0, 0, 1);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px 4px 4px 4px;
+    transition:
+        background-color 0.3s,
+        color 0.3s,
+        transform 0.3s;
 }
 
 .taste-button:hover {
-  background-color: rgba(253, 29, 29, 1);
-  color: white;
-  transform: scale(1.1);
+    background-color: rgba(253, 29, 29, 1);
+    color: white;
+    transform: scale(1.1);
 }
 
 .taste-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
 .taste-error {
-  color: #9e1b32;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #f5c6cb;
-  border-radius: 4px;
+    color: #9e1b32;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
 }
 
 .taste-ranking-list {
-  background-color: #f8f9fa;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .taste-ranking-header {
-  color: #9e1b32;
+    color: #9e1b32;
 }
 
 .taste-contributor-list {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 .taste-contributor-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: white;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
 }
 
 .taste-contributor-item:hover {
-  transform: translateY(-2px);
+    transform: translateY(-2px);
 }
 
 .taste-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  margin-right: 20px;
-  object-fit: cover;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
 }
 
 .taste-contributor-info {
-  flex-grow: 1;
-  color: #9e1b32;
+    flex-grow: 1;
+    color: #9e1b32;
 }
 
 .taste-contributor-info h3 {
-  margin: 0 0 10px 0;
-  color: #9e1b32;
+    margin: 0 0 10px 0;
+    color: #9e1b32;
 }
 
 .taste-contributor-info p {
-  margin: 5px 0;
-  color: #9e1b32;
+    margin: 5px 0;
+    color: #9e1b32;
 }
