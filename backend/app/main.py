@@ -4,7 +4,11 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from github_scraper import extract_gh_owner_repo, scrape_gh_contribution_data
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[logging.FileHandler("logs/backend.log"), logging.StreamHandler()],
+)
 logger = logging.getLogger(__name__)
 
 app = FastAPI()

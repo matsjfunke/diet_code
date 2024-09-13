@@ -3,6 +3,8 @@ FROM python:3.11.6-slim-bookworm
 WORKDIR /app
 COPY . /app
 
+RUN mkdir -p /app/logs
+
 RUN apt update --fix-missing && apt upgrade -y 
 RUN pip install --upgrade pip
 COPY requirements.txt .

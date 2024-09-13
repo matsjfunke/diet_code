@@ -49,6 +49,8 @@ services:
     command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
     ports:
       - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
     labels:
       - "traefik.http.routers.backend.rule=Host(`diet-code.dev`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entrypoints=websecure"

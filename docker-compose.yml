@@ -11,7 +11,7 @@ services:
       - 3000:3000
     command: ["npm", "start"]
     environment:
-      - REACT_APP_BACKEND_BASE_URL=http://localhost:8000
+      - REACT_APP_BACKEND_BASE_URL=http://localhost:8000/api
 
   backend-container:
     build:
@@ -22,3 +22,5 @@ services:
     ports:
       - 8000:8000
     command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
+    volumes:
+      - ./logs:/app/logs
