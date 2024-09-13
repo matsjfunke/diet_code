@@ -14,6 +14,6 @@ docker-compose -f docker-compose.prod.yml pull
 docker-compose -f docker-compose.prod.yml build
 
 # Start the services
-docker-compose -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.prod.yml up --build --remove-orphans -d
 
 echo "Deployment complete."
