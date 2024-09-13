@@ -1,8 +1,7 @@
-version: "3.3"
-
 services:
   traefik:
     image: traefik:v2.9
+    container_name: traefik
     command:
       - "--api.insecure=false"
       - "--providers.docker=true"
@@ -26,6 +25,8 @@ services:
       dockerfile: Dockerfile
     image: diet-code-frontend-image
     container_name: diet-code-frontend-container
+    ports:
+      - "3000:3000"
     labels:
       - "traefik.http.routers.frontend.rule=Host(`diet-code.dev`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
@@ -41,6 +42,8 @@ services:
       dockerfile: Dockerfile
     image: diet-code-backend-image
     container_name: diet-code-backend-container
+    ports:
+      - "8000:8000"
     labels:
       - "traefik.http.routers.backend.rule=Host(`diet-code.dev`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entrypoints=websecure"

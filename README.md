@@ -23,3 +23,5 @@ docker-compose up --build
 chmod +x deploy.sh
 ./deploy.sh
 ```
+
+use `docker-compose -f docker-compose.prod.yml down` to stop containers
