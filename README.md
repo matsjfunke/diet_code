@@ -26,4 +26,6 @@ chmod +x deploy.sh
 ./deploy.sh
 ```
 
+go to https://diet-code.dev/taste and try to taste the diet code ranking for any public repo with contributors (try: https://github.com/matsjfunke/psychopy-install-setup)
+
 use `docker-compose -f docker-compose.prod.yml down` to stop containers
