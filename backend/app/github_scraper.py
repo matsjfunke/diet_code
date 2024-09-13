@@ -1,5 +1,6 @@
 import json
 import re
+import time
 import urllib.parse
 from typing import Any, Dict, List, Tuple
 
@@ -17,35 +18,41 @@ def extract_gh_owner_repo(url: str) -> Tuple[str, str]:
     raise ValueError("Invalid GitHub URL format")
 
 
-def scrape_gh_contribution_data(owner: str, repo: str) -> List[Dict[str, Any]]:
+def scrape_gh_contribution_data(owner: str, repo: str, retry_delay: int = 4, max_retries: int = 10) -> List[Dict[str, Any]]:
     url = f"https://api.github.com/repos/{owner}/{repo}/stats/contributors"
 
-    try:
-        response = requests.get(url)
-        contributors = json.loads(response.text)
+    for _ in range(max_retries):
+        try:
+            response = requests.get(url)
 
-        deletion_ranking = []
-        for contributor in contributors:
-            username = contributor["author"]["login"]
-            profile_pic = contributor["author"]["avatar_url"]
-            commits = contributor["total"]
-            additions = sum(week["a"] for week in contributor["weeks"])
-            deletions = sum(week["d"] for week in contributor["weeks"])
+            if response.status_code == 202:
+                time.sleep(retry_delay)
+                continue
 
-            deletion_ranking.append(
-                {"contributor": {"username": username, "profile_pic": profile_pic, "deletions": deletions, "additions": additions, "commits": commits}}
-            )
+            contributors = json.loads(response.text)
 
-        deletion_ranking.sort(key=lambda x: (x["contributor"]["deletions"], x["contributor"]["additions"]), reverse=True)
-        return deletion_ranking
+            deletion_ranking = [
+                {
+                    "contributor": {
+                        "username": contributor["author"]["login"],
+                        "profile_pic": contributor["author"]["avatar_url"],
+                        "deletions": sum(week["d"] for week in contributor["weeks"]),
+                        "additions": sum(week["a"] for week in contributor["weeks"]),
+                        "commits": contributor["total"],
+                    }
+                }
+                for contributor in contributors
+            ]
 
-    except Exception as e:
-        print(f"Failed to retrieve data. Exception: {e}")
+            return sorted(deletion_ranking, key=lambda x: (x["contributor"]["deletions"], x["contributor"]["additions"]), reverse=True)
+
+        except Exception as e:
+            print(f"Failed to retrieve data. Exception: {e}")
 
 
 if __name__ == "__main__":
     url1 = "https%3A%2F%2Fgithub.com%2Fblack-forest-labs%2Fflux%2Fgraphs%2Fcontributors"
-    url2 = "https://github.com/black-forest-labs/flux/graphs/contributors"
+    url2 = "https://github.com/sashabaranov/go-openai"
 
     owner1, repo1 = extract_gh_owner_repo(url1)
     owner, repo = extract_gh_owner_repo(url2)
@@ -54,9 +61,6 @@ if __name__ == "__main__":
     print(owner, repo)  # Output: black-forest-labs flux
 
     contributor_data = scrape_gh_contribution_data(owner=owner, repo=repo)
-
-    # first = contributor_data[0]
-    # print(f"The contributor with the most deletions is {first['contributor']['username']} with {first['contributor']['deletions']} deletions.")
 
     import subprocess
 
