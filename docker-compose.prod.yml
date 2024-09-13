@@ -1,0 +1,56 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: traefik:v2.9
+    command:
+      - "--api.insecure=false"
+      - "--providers.docker=true"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=mats.funke@gmail.com"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "traefik-certificates:/letsencrypt"
+    networks:
+      - web
+
+  diet-code-frontend-container:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: diet-code-frontend-image
+    container_name: diet-code-frontend-container
+    labels:
+      - "traefik.http.routers.frontend.rule=Host(`diet-code.dev`)"
+      - "traefik.http.routers.frontend.entrypoints=websecure"
+      - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+    networks:
+      - web
+    environment:
+      - REACT_APP_BACKEND_BASE_URL=http://diet-code.dev/api
+
+  diet-code-backend-container:
+    build:
+      context: ./backend/app
+      dockerfile: Dockerfile
+    image: diet-code-backend-image
+    container_name: diet-code-backend-container
+    labels:
+      - "traefik.http.routers.backend.rule=Host(`diet-code.dev`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.backend.entrypoints=websecure"
+      - "traefik.http.routers.backend.tls.certresolver=myresolver"
+    networks:
+      - web
+
+networks:
+  web:
+    external: true
+
+volumes:
+  traefik-certificates:

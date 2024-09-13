@@ -16,3 +16,10 @@ docker-compose up --build
 **Frontend:**
 
 - access localhost:3000 and interact with the UI
+
+## Deployment on Server
+
+```sh
+chmod +x deploy.sh
+./deploy.sh
+```
