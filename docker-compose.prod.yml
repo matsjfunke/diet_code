@@ -1,3 +1,5 @@
+version: '3.3'
+
 services:
   traefik:
     image: traefik:v2.9
@@ -19,35 +21,39 @@ services:
     networks:
       - web
 
-  diet-code-frontend-container:
+  frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     image: diet-code-frontend-image
     container_name: diet-code-frontend-container
+    command: ["npm", "start"]
     ports:
       - "3000:3000"
     labels:
       - "traefik.http.routers.frontend.rule=Host(`diet-code.dev`)"
       - "traefik.http.routers.frontend.entrypoints=websecure"
       - "traefik.http.routers.frontend.tls.certresolver=myresolver"
+      - "traefik.http.services.frontend.loadbalancer.server.port=3000"
     networks:
       - web
     environment:
-      - REACT_APP_BACKEND_BASE_URL=http://diet-code.dev/api
+      - REACT_APP_BACKEND_BASE_URL=https://diet-code.dev/api
 
-  diet-code-backend-container:
+  backend:
     build:
       context: ./backend/app
       dockerfile: Dockerfile
     image: diet-code-backend-image
     container_name: diet-code-backend-container
+    command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
     ports:
       - "8000:8000"
     labels:
       - "traefik.http.routers.backend.rule=Host(`diet-code.dev`) && PathPrefix(`/api`)"
       - "traefik.http.routers.backend.entrypoints=websecure"
       - "traefik.http.routers.backend.tls.certresolver=myresolver"
+      - "traefik.http.services.backend.loadbalancer.server.port=8000"
     networks:
       - web
 
