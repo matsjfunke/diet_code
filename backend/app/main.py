@@ -29,7 +29,7 @@ async def return_ranking(url: str):
         logger.error(f"Unexpected error scraping data: {str(e)}")
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
-    logger.info(f"Returned ranking for: {owner}/{repo}")
+    logger.info(f"Returned ranking for: {url}")
     return deletion_ranking
 
 
