@@ -19,6 +19,8 @@ docker-compose up --build
 
 ## Deployment on Server
 
+use the deployment script to automate docker & docker-compose installation, and starting docker containers
+
 ```sh
 chmod +x deploy.sh
 ./deploy.sh

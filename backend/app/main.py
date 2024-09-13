@@ -11,6 +11,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
+    "https://diet-code.dev",
 ]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
@@ -24,7 +25,7 @@ async def return_ranking(url: str):
         raise HTTPException(status_code=400, detail=str(e))
 
     try:
-        deletion_ranking = scrape_gh_contribution_data(owner=owner, repo=repo)
+        deletion_ranking = scrape_gh_contribution_data(owner=owner, repo=repo, retry_delay=6, max_retries=10)
     except Exception as e:
         logger.error(f"Unexpected error scraping data: {str(e)}")
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
