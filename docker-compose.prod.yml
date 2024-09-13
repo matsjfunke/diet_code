@@ -1,4 +1,4 @@
-version: '3.3'
+version: "3.3"
 
 services:
   traefik:
@@ -25,8 +25,8 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: diet-code-frontend-image
-    container_name: diet-code-frontend-container
+    image: frontend-image
+    container_name: frontend-container
     command: ["npm", "start"]
     ports:
       - "3000:3000"
@@ -44,8 +44,8 @@ services:
     build:
       context: ./backend/app
       dockerfile: Dockerfile
-    image: diet-code-backend-image
-    container_name: diet-code-backend-container
+    image: backend-image
+    container_name: backend-container
     command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
     ports:
       - "8000:8000"

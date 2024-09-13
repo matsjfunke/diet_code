@@ -1,6 +1,6 @@
 import logging
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from github_scraper import extract_gh_owner_repo, scrape_gh_contribution_data
 
@@ -16,8 +16,9 @@ origins = [
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_credentials=True, allow_methods=["*"], allow_headers=["*"])
 
 
-@app.get("/gh-deletion-ranking")
-async def return_ranking(url: str):
+@app.get("/api/gh-deletion-ranking")
+async def return_ranking(url: str = Query(...)):
+    logger.info(f"Received request for URL: {url}")
     try:
         owner, repo = extract_gh_owner_repo(url)
     except ValueError as e:
@@ -25,12 +26,11 @@ async def return_ranking(url: str):
         raise HTTPException(status_code=400, detail=str(e))
 
     try:
-        deletion_ranking = scrape_gh_contribution_data(owner=owner, repo=repo, retry_delay=6, max_retries=10)
+        deletion_ranking = scrape_gh_contribution_data(owner=owner, repo=repo, retry_delay=3, max_retries=20)
     except Exception as e:
         logger.error(f"Unexpected error scraping data: {str(e)}")
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
-    logger.info(f"Returned ranking for: {url}")
     return deletion_ranking
 
 

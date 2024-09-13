@@ -1,24 +1,24 @@
 version: "3.8"
 
 services:
-  diet-code-frontend-container:
+  frontend-container:
     build:
       context: ./frontend
       dockerfile: Dockerfile
-    image: diet-code-frontend-image
-    container_name: diet-code-frontend-container
+    image: frontend-image
+    container_name: frontend-container
     ports:
       - 3000:3000
     command: ["npm", "start"]
     environment:
       - REACT_APP_BACKEND_BASE_URL=http://localhost:8000
 
-  diet-code-backend-container:
+  backend-container:
     build:
       context: ./backend/app
       dockerfile: Dockerfile
-    image: diet-code-backend-image
-    container_name: diet-code-backend-container
+    image: backend-image
+    container_name: backend-container
     ports:
       - 8000:8000
     command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
