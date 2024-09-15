@@ -10,7 +10,8 @@ import requests
 def extract_gh_owner_repo(url: str) -> Tuple[str, str]:
     decoded_url = urllib.parse.unquote(url)
 
-    pattern = r"https://github\.com/([^/]+)/([^/]+)"
+    # pattern = r"https://github\.com/([^/]+)/([^/]+)"
+    pattern = r"https://github\.com/([^/]+)/([^/.]+)(?:\.git)?"
     match = re.search(pattern, decoded_url)
 
     if match:
@@ -53,12 +54,15 @@ def scrape_gh_contribution_data(owner: str, repo: str, retry_delay: int = 4, max
 if __name__ == "__main__":
     url1 = "https%3A%2F%2Fgithub.com%2Fblack-forest-labs%2Fflux%2Fgraphs%2Fcontributors"
     url2 = "https://github.com/sashabaranov/go-openai"
+    url3 = "https://github.com/langfuse/langfuse.git"
 
     owner1, repo1 = extract_gh_owner_repo(url1)
-    owner, repo = extract_gh_owner_repo(url2)
+    owner2, repo2 = extract_gh_owner_repo(url2)
+    owner, repo = extract_gh_owner_repo(url3)
 
     print(owner1, repo1)  # Output: black-forest-labs flux
-    print(owner, repo)  # Output: black-forest-labs flux
+    print(owner2, repo2)
+    print(owner, repo)  # Output: langfuse langfuse
 
     contributor_data = scrape_gh_contribution_data(owner=owner, repo=repo)
 
