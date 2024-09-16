@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     image: frontend-image
     container_name: frontend-container
-    command: ["npm", "start"]
+    command: serve -s build -l 3000
     ports:
       - "3000:3000"
     labels:
