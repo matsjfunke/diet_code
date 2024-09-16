@@ -19,13 +19,19 @@ docker-compose up --build
 
 ## Deployment on Server
 
-use the deployment script to automate docker & docker-compose installation, and starting docker containers
 
 ```sh
+# ssh into server
+ssh -i ~/.ssh/diet-code root@<ip-address>
+
+# use the deployment script to automate docker & docker-compose installation, and starting docker containers
 chmod +x deploy.sh
 ./deploy.sh
 ```
 
 go to https://diet-code.dev/taste and try to taste the diet code ranking for any public repo with contributors (try: https://github.com/matsjfunke/psychopy-install-setup)
 
-use `docker-compose -f docker-compose.prod.yml down` to stop containers
+to stop containers use:
+```sh
+docker-compose -f docker-compose.prod.yml down
+```
