@@ -1,0 +1,45 @@
+version: "3.3"
+
+# This docker-compose file assumes there is already a Traefik reverse proxy running
+# from another docker-compose file with:
+# - Traefik container handling SSL certificates via Let's Encrypt
+# - Port 80 and 443 exposed
+# - Certificates stored in traefik-certificates volume
+
+services:
+  diet-codefrontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_BACKEND_BASE_URL=https://diet-code.dev/api
+    container_name: diet-code-frontend
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.diet-code-frontend.rule=Host(`diet-code.dev`)"
+      - "traefik.http.routers.diet-code-frontend.entrypoints=websecure"
+      - "traefik.http.routers.diet-code-frontend.tls.certresolver=myresolver"
+      - "traefik.http.services.diet-code-frontend.loadbalancer.server.port=3000"
+    networks:
+      - diet-code-web
+
+  diet-code-backend:
+    build:
+      context: ./backend/app
+      dockerfile: Dockerfile
+    container_name: diet-code-backend
+    command: gunicorn -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 --timeout 480 main:app
+    volumes:
+      - ./logs:/app/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.diet-code-backend.rule=Host(`diet-code.dev`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.diet-code-backend.entrypoints=websecure"
+      - "traefik.http.routers.diet-code-backend.tls.certresolver=myresolver"
+      - "traefik.http.services.diet-code-backend.loadbalancer.server.port=8000"
+    networks:
+      - diet-code-web
+
+networks:
+  diet-code-web:
+    driver: bridge
