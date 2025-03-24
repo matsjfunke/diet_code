@@ -2,7 +2,7 @@
 
 a web app that ranks developers productivity based on amount of deletions and spreads the gospel of deleting code
 
-## Run locally
+## Run locallyk,yxnvoa  oa<
 
 ```sh
 docker-compose up --build
