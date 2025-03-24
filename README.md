@@ -1,7 +1,7 @@
 # Diet Code
 
 a web app that ranks developers productivity based on amount of deletions and spreads the gospel of deleting code
-
+avnoan
 ## Run locally
 
 ```sh
